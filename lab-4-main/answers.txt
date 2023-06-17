@@ -1,0 +1,196 @@
+/******************************************************************************
+** Lab 4: Path finder
+******************************************************************************/
+
+Group members:
+- Saghar Arab
+- Elvina Fahlgren
+- Sara Sehdo
+
+/******************************************************************************
+** 1. List the number of loop iterations, minimal cost, and a shortest path
+**    (i.e. a path having minimal cost) for each of the following invocations.
+******************************************************************************/
+
+> java RunPathFinder ucs AdjacencyGraph graphs/AdjacencyGraph/citygraph-SE.txt Lund Kiruna
+
+loop iterations: 5427
+minimal cost:    1826.0
+shortest path:   31
+
+> java RunPathFinder ucs NPuzzle 3 "/HFG/BED/C_A/" "/ABC/DEF/GH_/"
+
+loop iterations: 483573
+minimal cost:    31.0
+shortest path:   31
+
+> java RunPathFinder astar NPuzzle 3 "/HFG/BED/C_A/" "/ABC/DEF/GH_/"
+
+loop iterations: 32375
+minimal cost:   31.0
+
+> java RunPathFinder ucs NPuzzle 3 "/HGF/BED/C_A/" "/ABC/DEF/GH_/"
+
+loop iterations: 483841
+minimal cost:    none
+shortest path:   no path
+
+> java RunPathFinder ucs GridGraph graphs/GridGraph/AR0011SR.map "23:161" "130:211"
+
+loop iterations: 159327
+minimal cost:    366.40411229460744
+shortest path:   308
+
+> java RunPathFinder astar GridGraph graphs/GridGraph/AR0011SR.map "23:161" "130:211"
+
+loop iterations: 95160
+minimal cost:    366.40411229460744
+
+> java RunPathFinder ucs WordLadder graphs/WordLadder/words-saldo.txt syster broder
+
+loop iterations: 71182
+minimal cost:    11.0
+shortest path:   11
+
+> java RunPathFinder astar WordLadder graphs/WordLadder/words-saldo.txt syster broder
+
+loop iterations: 7055
+minimal cost:    11.0
+
+/******************************************************************************
+** 2. For each of the three classes GridGraph, WordLadder, and NPuzzle,
+**    what is the approximate improvement factor in the number
+**    of loop iterations by running A* instead of UCS?
+**    Try a number of different examples per class.
+******************************************************************************/
+
+GridGraph:  1.15
+
+WordLadder: 13.7
+
+NPuzzle:   15
+
+/******************************************************************************
+** 3. For which of the three classes GridGraph, WordLadder, and NPuzzle,
+**    did the heuristics .guessCost() have the most impact?
+**    What do you think is the reason for this?
+******************************************************************************/
+
+NPuzzle and WordLadder.
+According to the improvement factor of loop iterationer NPuzzle and WordLadder have the most
+impact.
+
+
+/******************************************************************************
+** 4. Give pseudo-code of the following methods that you implemented.
+**    Try to abstract over details which are relevant only for Java.
+**    Make it easy to follow for a human.
+******************************************************************************/
+
+WordLadder.outgoingEdges(String w):
+    outgoing = new linkedList
+    charArray = w to charArray
+    for every letter in string
+        for every char in charset
+            replace letter with char
+            newWord = new String(charArray)
+            if dictionary contains newWord and newWord is not equals to w
+            add DirectedEdge to linkedList
+
+
+WordLadder.guessCost(String w, String u):
+    cost = 0
+    w1 = w to Char Array
+    w2 = u to char Array
+    shortestWordLength = minimum length of w1 and w2
+
+    for every letter in w
+        if w1 is not w2
+            add 1 to cost
+
+
+GridGraph.guessCost(Coord p, Coord q):
+     a = q.x - p.x
+     b = q.y - p.y
+
+     c = sqrt (a^2 + b^2)
+
+
+
+/******************************************************************************
+** 5. Give pseudo-code of the method .searchAstar() in PathFinder.
+******************************************************************************/
+
+PathFinder.searchAstar(Node start, Node goal):
+    visited = new Hashset
+    iterations = 0
+
+    pqueue = new PriorityQueue(Comparator (entry -> entry.guessCost))
+    entry = new PQentry
+    add entry to pqueue
+
+    while pqueue is not empty
+        remove entry from pqueue
+        add 1 to iterations
+
+    if visited does not contain entry node
+        add entry node to visited
+        if entry node = goal
+        return new Result
+
+    for every outgoingEdge from current node
+        costToNext = costToHere + edge.weight
+        calculate the total cost
+        add new PQEntry to pqueue
+
+
+
+
+
+/******************************************************************************
+** 6. What are the main differences between your implementations 
+**    of .searchAstar() and .searchUCS()?
+******************************************************************************/
+
+While ucs goes to the closest node and then calculate cost A* as a hueristic
+meaning it guesses the distance between to nodes.
+
+/******************************************************************************
+** Appendix: General information
+**
+** A. Approximately how many hours did you spend on the assignment?
+******************************************************************************/
+
+Sara Sehdo: 10 h
+Saghar Arab : 10 h
+Elvina Fahlgren : 10 h
+
+/******************************************************************************
+** B. Are there any known bugs / limitations?
+******************************************************************************/
+
+No
+
+/******************************************************************************
+** C. Did you collaborate with any other students on this lab?
+**    If so, please write in what way you collaborated and with whom.
+**    Also include any resources (including the web) that you may
+**    may have used in creating your design.
+******************************************************************************/
+
+Yes, we got inspiration from the web with the algorithms.
+
+/******************************************************************************
+** D. Describe any serious problems you encountered.                    
+******************************************************************************/
+
+[...]
+
+
+/******************************************************************************
+** E. List any other comments here.
+**    Feel free to provide any feedback on how much you learned 
+**    from doing the assignment, and whether you enjoyed it.                                             
+******************************************************************************/
+
+[...]
