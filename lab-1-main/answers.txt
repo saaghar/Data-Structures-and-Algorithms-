@@ -1,0 +1,120 @@
+/******************************************************************************
+** Lab 1: Sorting, Complexity
+******************************************************************************/
+
+Group members:
+- [Saghar Arab]
+- [Sara Sehdo]
+- [Elvina Fahlgren]
+
+/******************************************************************************
+** Task: Figuring out the complexity
+**
+** 1. What is the complexity of running each of the following algorithms
+**    on each of the following kinds of inputs?
+******************************************************************************/
+
+Insertion.java on:
+
+- random inputs:      Quadratic
+- 95% sorted inputs:  Quadratic
+- sorted inputs:      Linear
+
+Quick.java on:
+
+- random inputs:      Linearithmic
+- 95% sorted inputs:  Quadratic
+- sorted inputs:      Quadratic
+
+Merge.java on:
+
+- random inputs:      Linearithmic
+- 95% sorted inputs:  Linearithmic
+- sorted inputs:      Linearithmic
+
+/******************************************************************************
+** Task: Improving quicksort
+**
+** 2. Do the following changes affect the complexity
+**    of quicksort on any of the three degrees of sortedness of the input?
+**    If so, what is it that changes?
+******************************************************************************/
+
+Shuffling the array first:
+Yes. There is an obvious improvement for the sorted arrays. By taking the first
+(which is the smallest) element as pivot in a sorted array, the complexity is
+quadratic. If we shuffle the array first, it gives a good split often enough to
+give us a linearithmic complexity.
+Instead of 3 500 000 ms for arrays of size 10 000, the time is
+improved to 11 000 ms.
+
+Median-of-three pivot selection:
+Yes. There is an even better improvement for the sorted arrays, with
+median-of-three pivot selection. This because taking three different element
+(lowest, highest and the one in the middle) gives an even better pivot.
+3 500 000 ms -> 3 000 ms.
+
+Insertion sort for small subarrays:
+No. The complexity is still the same because the amount of array accesses is
+still the same. However, the complexity for insertion sort is quadratic
+but it works well on small subarrays and overall it improves the time of
+quicksort algorithm.
+
+/******************************************************************************
+** 3. What is a good cutoff to use for insertion sort?
+**    Explain briefly how you came to this answer.
+**    Remember that you should try to find the answer in a systematic way.
+******************************************************************************/
+
+We thought that 200 was a good cutoff value to use after testing different cutoff
+values. We started with 300 as a cutoff, by looking at the table that we got
+from running the program. We tried lower values but didn't obtain a much better
+value so we went with 200.
+
+/******************************************************************************
+** 4. Which combination of improvements gives the best performance?
+******************************************************************************/
+
+Median-of-three pivot selection and insertion sort for small subarrays.
+
+/******************************************************************************
+** Appendix: General information
+**
+** A. Approximately how many hours did you spend on the assignment?
+******************************************************************************/
+
+Saghar Arab: 3,5h
+Sara Sehdo: 3,5h
+Elvina Fahlgren: 3,5h
+
+
+/******************************************************************************
+** B. Are there any known bugs / limitations?
+******************************************************************************/
+
+Not what we know.
+
+/******************************************************************************
+** C. Did you collaborate with any other students on this lab?
+**    If so, please write in what way you collaborated and with whom.
+**    Also include any resources (including the web) that you may
+**    may have used in creating your design.
+******************************************************************************/
+
+We have used lecture slides.
+
+/******************************************************************************
+** D. Describe any serious problems you encountered.
+******************************************************************************/
+
+No, we have not encountered any serious problem.
+
+/******************************************************************************
+** E. List any other comments here.
+**    Feel free to provide any feedback on how much you learned
+**    from doing the assignment, and whether you enjoyed it.
+******************************************************************************/
+
+We have not had the lectures about quicksort, which made us learn us by our self.
+There would have been better if we had the lectures before doing the lab.
+The reason was because we finished the lab before the lecture, in the morning.

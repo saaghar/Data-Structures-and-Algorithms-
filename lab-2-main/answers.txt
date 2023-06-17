@@ -1,0 +1,84 @@
+/******************************************************************************
+** Lab 2: Autocomplete
+******************************************************************************/
+
+Group members:
+- Sara Sehdo
+- Saghar Arab
+- Elvina Fahlgren
+
+/******************************************************************************
+** 1. Describe how your firstIndexOf() method in RangeBinarySearch.java
+**    finds the first index of a key that equals the search key.
+******************************************************************************/
+
+We iterate through the array and uses the comparator to check if an element in
+the array is equal to the search key. Then we return its index, and it continues
+halving the interval until the first equal element is found.
+
+/******************************************************************************
+** 2. State and justify the asymptotic complexity of the operations
+**    in the Autocomplete class in the dictionary size n.
+**    For all Matches and numberOfMatches, the asymptotic complexity
+**    should also depend on the matching terms m.
+**
+**    You may take the number of comparisons as a proxy for the runtime.
+******************************************************************************/
+
+sortDictionary: O(N log N)
+
+In sortDictionary, we are using Arrays.sort which uses the sort algorithm timsort to sort the array.
+Timsort is a hybrid sorting algorithm which is derived from mergesort and insertion sort. We know that mergesort has the
+complexity n log n (linearithmic) and insertion sort has the complexity n² (quadratic). Insertion sort is used on
+small arrays and therefore timsort has the complexity n log n.
+
+numberOfMatches: O(log N)
+
+The algorithm scales up logarithmically because if the dictionary get extended the algorithm still just finds the first
+and last index of the key that matches with the prefix. We do not have to go through the entire array.
+
+allMatches: O(log N + M log M)
+
+This function uses numberOfMatches, which has complexity log n, a for loop, which has the complexity m (where m is the
+number of matches) and Arrays.sort, which has complexity m log m. The m log m complexity is dominating the m complexity
+so we do not have to include it. This is, in total, log n + m log m.
+
+/******************************************************************************
+** Appendix: General information
+**
+** A. Approximately how many hours did you spend on the assignment?
+******************************************************************************/
+
+Sara Sehdo : 9h
+Saghar Arab : 9h
+Elvina Fahlgren : 9h
+
+/******************************************************************************
+** B. Are there any known bugs / limitations?
+******************************************************************************/
+
+No.
+
+/******************************************************************************
+** C. Did you collaborate with any other students on this lab?
+**    If so, please write in what way you collaborated and with whom.
+**    Also include any resources (including the web) that you may
+**    may have used in creating your design.
+******************************************************************************/
+
+No.
+
+/******************************************************************************
+** D. Describe any serious problems you encountered.                    
+******************************************************************************/
+
+No bug that we know. Although Term.java didn't work when working on a different
+PC, worked after removing static and then applying it again.
+
+/******************************************************************************
+** E. List any other comments here.
+**    Feel free to provide any feedback on how much you learned 
+**    from doing the assignment, and whether you enjoyed it.                                             
+******************************************************************************/
+
+
